@@ -17,16 +17,17 @@
       touch-action: manipulation;
     }
 
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-  max-width: 350px;
-  position: relative;
-  z-index: 10;
-}
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      max-width: 350px;
+      position: relative;
+      z-index: 10;
+    }
+
     h1 {
       color: #e91e63;
     }
@@ -41,6 +42,15 @@
       object-position: center;
     }
 
+    .button-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 10px;
+      z-index: 20;
+    }
+
     button {
       padding: 12px 25px;
       font-size: 16px;
@@ -53,7 +63,6 @@
     #yesBtn {
       background: #e91e63;
       color: white;
-      margin-right: 10px;
     }
 
     #noBtn {
@@ -71,8 +80,8 @@
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
     }
-  </style>
-</head>
+    </style>
+    </head>
 
 <body>
 
@@ -80,8 +89,11 @@
     <h1>Hey My Yellow Flower 🌼💕</h1>
     <img src="mary.jpg" alt="Mary" class="photo">
     <p>Mary, will you go out with me this Valentine’s? 🌹</p>
-    <button id="yesBtn" onclick="sayYes()">YES 😍</button>
-    <button id="noBtn" onclick="moveNo()">NO 🙃</button>
+
+    <div class="button-container">
+      <button id="yesBtn" onclick="sayYes()">YES 😍</button>
+      <button id="noBtn" onclick="moveNo()">NO 🙃</button>
+    </div>
   </div>
 
   <audio id="bgMusic" preload="auto">
@@ -93,12 +105,12 @@
 
     function moveNo() {
       const noBtn = document.getElementById("noBtn");
-
+      const container = document.querySelector(".button-container");
       noScale -= 0.1;
       if (noScale < 0.3) noScale = 0.3;
 
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 50);
+      const x = Math.random() * (container.offsetWidth - 60); // adjust for button width
+      const y = Math.random() * (container.offsetHeight - 40); // adjust for button height
 
       noBtn.style.position = "absolute";
       noBtn.style.left = x + "px";
