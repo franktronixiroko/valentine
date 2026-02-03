@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Hey Mary 💖</title>
+
   <style>
     body {
       margin: 0;
@@ -11,7 +12,7 @@
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       overflow: hidden;
     }
 
@@ -22,11 +23,20 @@
       text-align: center;
       box-shadow: 0 15px 30px rgba(0,0,0,0.2);
       max-width: 350px;
-      overflow: visible;
     }
 
     h1 {
       color: #e91e63;
+    }
+
+    .photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 15px auto;
+      display: block;
+      object-fit: cover;
+      object-position: center;
     }
 
     button {
@@ -36,7 +46,6 @@
       border-radius: 25px;
       cursor: pointer;
       transition: all 0.3s ease;
-      position: relative;
     }
 
     #yesBtn {
@@ -47,6 +56,7 @@
 
     #noBtn {
       background: #ccc;
+      position: relative;
     }
 
     .flowers {
@@ -60,62 +70,54 @@
       100% { transform: translateY(0); }
     }
   </style>
-  .photo {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  margin: 15px auto;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-}
-
 </head>
-<audio id="bgMusic" src="music.mp3"></audio>
-  <body>
+
+<body>
 
   <div class="card" id="card">
-    <h1>Hey My Yellow flower 💕</h1>
+    <h1>Hey My Yellow Flower 🌼💕</h1>
     <img src="mary.jpg" alt="Mary" class="photo">
     <p>Mary, will you go out with me this Valentine’s? 🌹</p>
     <button id="yesBtn" onclick="sayYes()">YES 😍</button>
     <button id="noBtn" onclick="moveNo()">NO 🙃</button>
   </div>
 
-<script>
-  let noScale = 1;
+  <audio id="bgMusic" preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
-  function moveNo() {
-    const noBtn = document.getElementById("noBtn");
+  <script>
+    let noScale = 1;
 
-    noScale -= 0.1;
-    if (noScale < 0.3) noScale = 0.3;
+    function moveNo() {
+      const noBtn = document.getElementById("noBtn");
 
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
+      noScale -= 0.1;
+      if (noScale < 0.3) noScale = 0.3;
 
-    noBtn.style.position = "absolute";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-    noBtn.style.transform = scale(${noScale});
-  }
-function sayYes() {
-  const music = document.getElementById("bgMusic");
-  music.volume = 0.6;
-  music.play().catch(() => {});
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
 
-  const card = document.getElementById("card");
-  card.innerHTML = `
-    <h1>Yesss 😍💖</h1>
-    <p>Mary, you just made my day 🌹</p>
-    <div class="flowers">🌸🌺💐🌷🌹</div>
-    <p>I can’t wait to spend Valentine’s with you ✨</p>
-  `;
-}
+      noBtn.style.position = "absolute";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+      noBtn.style.transform = scale(${noScale});
+    }
 
-</script>
-    <audio id="bgMusic" preload="auto">
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+    function sayYes() {
+      const music = document.getElementById("bgMusic");
+      music.volume = 0.6;
+      music.play().catch(() => {});
+
+      const card = document.getElementById("card");
+      card.innerHTML = `
+        <h1>Yesss 😍💖</h1>
+        <p>Mary, you just made my day 🌹</p>
+        <div class="flowers">🌸🌺💐🌷🌹</div>
+        <p>I can’t wait to spend Valentine’s with you ✨</p>
+      `;
+    }
+  </script>
+
 </body>
 </html>
