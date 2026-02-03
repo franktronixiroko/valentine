@@ -14,17 +14,19 @@
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       font-family: Arial, sans-serif;
       overflow: hidden;
+      touch-action: manipulation;
     }
 
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-      max-width: 350px;
-    }
-
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  max-width: 350px;
+  position: relative;
+  z-index: 10;
+}
     h1 {
       color: #e91e63;
     }
