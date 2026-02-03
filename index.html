@@ -15,6 +15,32 @@
       font-family: Arial, sans-serif;
       overflow: hidden;
       touch-action: manipulation;
+      position: relative;
+    }
+
+    /* Falling hearts container */
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Hearts won’t block buttons */
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: #ff3860;
+      animation: fall linear infinite;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
     .card {
@@ -25,7 +51,7 @@
       box-shadow: 0 15px 30px rgba(0,0,0,0.2);
       max-width: 350px;
       position: relative;
-      z-index: 10;
+      z-index: 10; /* Above hearts */
     }
 
     h1 {
@@ -80,10 +106,14 @@
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
     }
-    </style>
-    </head>
+
+  </style>
+</head>
 
 <body>
+
+  <!-- Falling hearts container -->
+  <div class="hearts" id="hearts"></div>
 
   <div class="card" id="card">
     <h1>Hey My Yellow Flower 🌼💕</h1>
@@ -106,11 +136,12 @@
     function moveNo() {
       const noBtn = document.getElementById("noBtn");
       const container = document.querySelector(".button-container");
+
       noScale -= 0.1;
       if (noScale < 0.3) noScale = 0.3;
 
-      const x = Math.random() * (container.offsetWidth - 60); // adjust for button width
-      const y = Math.random() * (container.offsetHeight - 40); // adjust for button height
+      const x = Math.random() * (container.offsetWidth - 60); 
+      const y = Math.random() * (container.offsetHeight - 40);
 
       noBtn.style.position = "absolute";
       noBtn.style.left = x + "px";
@@ -131,6 +162,27 @@
         <p>I can’t wait to spend Valentine’s with you ✨</p>
       `;
     }
+
+    // Generate falling hearts
+    const heartsContainer = document.getElementById("hearts");
+    const colors = ["#ff3860", "#ff6f91", "#ff85a2", "#ffb3c6"];
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.fontSize = (10 + Math.random() * 20) + "px";
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      heart.innerText = "❤️";
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heartsContainer.removeChild(heart);
+      }, 6000);
+    }
+
+    setInterval(createHeart, 300);
+
   </script>
 
 </body>
